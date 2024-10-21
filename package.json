@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "boom": "^7.3.0",
+    "fastify": "^3.21.6",
+    "fastify-swagger": "^5.1.1",
+    "mongoose": "^8.7.1",
+    "bcrypt": "^5.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "dotenv": "^16.0.0"
+  },
+  "name": "singlesplans",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
