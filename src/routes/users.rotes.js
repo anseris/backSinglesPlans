@@ -1,6 +1,7 @@
 // const customerCtrl = require('../controllers/customer.controller');
 const usersctrl = require('../controllers/users.controller');
 const loginctrl = require('../controllers/login.controller.js');
+const sendEmailctrl = require('../controllers/send-email.controller.js');
 const routes = [
     {
         url: '/users',
@@ -50,6 +51,21 @@ const routes = [
         url: '/loginuser/:id',
         method: 'PUT',
         handler: loginctrl.updateLoginUser,
+    },
+    {
+        url: '/loginuser/updatePassword/:id',
+        method: 'PUT',
+        handler: loginctrl.updatePasswordUser,
+    },
+    {
+        url: '/loginuser/recover',
+        method: 'POST',
+        handler: loginctrl.recoverPassword,
+    },
+    {
+        url: '/send-email',
+        method: 'POST',
+        handler: sendEmailctrl.sendEmail,
     }
 
 ] 

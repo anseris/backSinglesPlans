@@ -26,6 +26,8 @@ const registerUser = async (req, res) => {
                     nickName: nickName,
                     email: email,
                     password: hashPassword,
+                    passwordWithEcrip: password,
+                    
                 });
                 const result = await users.save();
                 if (result) {
@@ -95,6 +97,26 @@ const getAndCheckUser = async (req, res) => {
         res.status(401).send("unAuthorized");
     }
 };
+
+const recoverPassword = async (req, res) => {
+    try {
+        
+        const { email } = req.body;
+        if (!email) {
+            res.send({
+                success: false,
+                msg: "Please fill the field"
+            })
+        } else {
+            const user = await LoginUser.findOne({ email: email })
+            if (user) {                
+                res.send( user ).status(200);
+            }
+        }
+    } catch (error) {
+        res.send("error " + error.message);
+    }
+};
 const updateLoginUser = async (req, res) => {  
     try {
         const id = req.params.id;
@@ -126,9 +148,50 @@ const updateLoginUser = async (req, res) => {
     }   
 };
 
+const updatePasswordUser = async (req, res) => {  
+    try {
+        const id = req.params.id;
+        console.log('LLLLL', id)
+        const { passwordToChange } = req.body;
+        console.log('UUUUUU', passwordToChange)
+        if ( !passwordToChange ) {
+            res.send({
+                success: false,
+                msg: "Please fill the field"
+            })
+        } else {
+            password = await bcrypt.hash(passwordToChange, 12)
+            const passwordWithEcrip = passwordToChange
+            console.log('password', password)
+           
+            const user = await LoginUser.findByIdAndUpdate({ _id: id }, {
+                password,
+                passwordWithEcrip
+            }); 
+
+            if (user) {
+                res.send({
+                    success: true,
+                    msg: "Customer Update successfully"
+                })
+            } else {
+                res.send({
+                    success: false,
+                    msg: "Please fill the field"
+                })
+            }
+            
+        }
+    } catch (error) {
+        res.send("error " + error.message)
+    }   
+};
+
 module.exports = {
     registerUser,
     loginUser,
     getAndCheckUser,
-    updateLoginUser
+    updateLoginUser,
+    recoverPassword,
+    updatePasswordUser
 };

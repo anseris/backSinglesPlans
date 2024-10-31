@@ -4,7 +4,8 @@ const registerSchema = new Schema(
     {
         nickName: String,
         email: String,
-        password: String
+        password: String,
+        passwordWithEcrip: String
     }, 
     {
         timestamps: true,

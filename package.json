@@ -1,12 +1,13 @@
 {
   "dependencies": {
-    "boom": "^7.3.0",
-    "fastify": "^3.21.6",
-    "fastify-swagger": "^5.1.1",
-    "mongoose": "^8.7.1",
     "bcrypt": "^5.0.1",
+    "boom": "^7.3.0",
+    "dotenv": "^16.0.0",
+    "fastify": "^3.29.5",
+    "fastify-swagger": "^5.1.1",
     "jsonwebtoken": "^8.5.1",
-    "dotenv": "^16.0.0"
+    "mongoose": "^8.7.1",
+    "nodemailer": "^6.9.15"
   },
   "name": "singlesplans",
   "version": "1.0.0",
