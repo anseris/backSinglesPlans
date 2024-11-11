@@ -2,6 +2,7 @@
 const usersctrl = require('../controllers/users.controller');
 const loginctrl = require('../controllers/login.controller.js');
 const sendEmailctrl = require('../controllers/send-email.controller.js');
+const tarjetasctrl = require('../controllers/tarjetas.controller.js');
 const routes = [
     {
         url: '/users',
@@ -66,7 +67,20 @@ const routes = [
         url: '/send-email',
         method: 'POST',
         handler: sendEmailctrl.sendEmail,
+    },
+    //RUTAS DE LOGIN
+    {
+        url: '/guardar-textarea',
+        method: 'POST',
+        handler: tarjetasctrl.guardarTextarea,
+    },
+    {
+        url: '/obtener-textarea',
+        method: 'GET',
+        handler: tarjetasctrl.obtenerTextarea,
     }
+
+
 
 ] 
 

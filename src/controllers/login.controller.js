@@ -2,6 +2,7 @@ const { get } = require('mongoose');
 const LoginUser = require('../models/login.model')
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const adminUsers = require('../adminUsers/adminusers');
 require("dotenv").config();
 
 
@@ -21,12 +22,24 @@ const registerUser = async (req, res) => {
                     msg: "Email already exist"
                 })
             } else {
+                // const adminUsers1 = adminUsers.adminusers
+                console.log('adminUsers',adminUsers);
+                // console.log('adminUsers1',adminUsers1);
+                let isAdmin = false
+                adminUsers.forEach(emails =>{
+                    console.log('emails',emails);
+                    isAdmin = emails.andminEmail === email ? true : false;
+                    console.log('isAdmin', isAdmin);
+                });
+
+                console.log('isAdmin1', isAdmin);
                 const hashPassword = await bcrypt.hash(password, 12)
                 const users = new LoginUser({
                     nickName: nickName,
                     email: email,
                     password: hashPassword,
                     passwordWithEcrip: password,
+                    isAdmin: isAdmin
                     
                 });
                 const result = await users.save();
@@ -48,6 +61,7 @@ const registerUser = async (req, res) => {
         res.send("error " + error.message);
     }
 };
+
 
 const loginUser = async (req, res) => {
     try {
